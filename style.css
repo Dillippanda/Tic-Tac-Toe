@@ -86,4 +86,12 @@ display: none;
 .box1{
     width: 30%;
 }
+    .game{
+    width: 75vw;
+    height:65vmin ;
+}
+.box {
+    height: 25vmin;
+    width: 24vmin;
+}
 }
