@@ -93,5 +93,6 @@ display: none;
 .box {
     height: 25vmin;
     width: 24vmin;
+    font-size: 12vmin;
 }
 }
