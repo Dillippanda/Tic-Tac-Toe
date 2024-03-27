@@ -73,3 +73,18 @@ height: 95vmin;
 .hide{
 display: none;
 }
+@media(max-width:500px){
+.container{
+    height: 50vh; 
+}
+.msg-container{
+    height: 60vmin;
+
+}
+#new-btn{
+    width: 30%;
+}
+.box1{
+    width: 30%;
+}
+}
