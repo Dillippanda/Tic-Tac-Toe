@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://t4.ftcdn.net/jpg/02/18/46/59/360_F_218465980_2JJETZ9wO9rp2obMr8ANLnX00OTfbpjU.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff; /* Ensure text is readable against the background */
+        }
+
+        .heading {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+            perspective: 1000px;
+        }
+
+        .heading span {
+            display: inline-block;
+            position: relative;
+            transform: rotateX(0deg) rotateY(0deg);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .heading span::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #333;
+            z-index: -1;
+            transform: translateZ(-10px);
+            filter: blur(2px);
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .box {
+            width: 280px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background for readability */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #333; /* Text color for readability inside the boxes */
+        }
+
+        .box h3 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .box h1 {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .box i {
+            font-size: 100px;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        .button-group {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .output-container p {
+            margin: 10px 0;
+        }
+
+        output {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading"><span data-text="TRACK YOUR FITNESS">TRACK YOUR FITNESS</span></h1>
+
+    <div class="container">
+        <!-- Step Tracker -->
+        <div class="box">
+            <h3>Track Your Steps</h3>
+            <i class="fas fa-shoe-prints"></i>
+            <h1>Goal: <output id="stepGoal">15,000 Steps</output></h1>
+            <div class="button-group">
+                <button type="button" onclick="trackSteps()">Track Steps</button>
+            </div>
+            <div class="output-container">
+                <p>Current Steps: <output id="currentSteps">0</output></p>
+            </div>
+        </div>
+
+        <!-- Cycling Tracker -->
+        <div class="box">
+            <h3>Track Your Cycling</h3>
+            <i class="fas fa-bicycle"></i>
+            <h1>Goal: <output id="cyclingGoal">100 km</output></h1>
+            <div class="button-group">
+                <button type="button" onclick="trackCycling()">Track Cycling</button>
+            </div>
+            <div class="output-container">
+                <p>Current Distance: <output id="currentCycling">0 km</output></p>
+            </div>
+        </div>
+
+        <!-- Running Tracker -->
+        <div class="box">
+            <h3>Track Your Running</h3>
+            <i class="fas fa-running"></i>
+            <h1>Goal: <output id="runningGoal">50 km</output></h1>
+            <div class="button-group">
+                <button type="button" onclick="trackRunning()">Track Running</button>
+            </div>
+            <div class="output-container">
+                <p>Current Distance: <output id="currentRunning">0 km</output></p>
+            </div>
+        </div>
+
+        <!-- Swimming Tracker -->
+        <div class="box">
+            <h3>Track Your Swimming</h3>
+            <i class="fas fa-swimmer"></i>
+            <h1>Goal: <output id="swimmingGoal">30 km</output></h1>
+            <div class="button-group">
+                <button type="button" onclick="trackSwimming()">Track Swimming</button>
+            </div>
+            <div class="output-container">
+                <p>Current Distance: <output id="currentSwimming">0 km</output></p>
+            </div>
+        </div>
+
+        <!-- Yoga Tracker -->
+        <div class="box">
+            <h3>Track Your Yoga</h3>
+            <i class="fas fa-spa"></i>
+            <h1>Goal: <output id="yogaGoal">30 Hours</output></h1>
+            <div class="button-group">
+                <button type="button" onclick="trackYoga()">Track Yoga</button>
+            </div>
+            <div class="output-container">
+                <p>Current Hours: <output id="currentYoga">0 Hours</output></p>
+            </div>
+        </div>
+
+        <!-- Meditation Tracker -->
+        <div class="box">
+            <h3>Track Your Meditation</h3>
+            <i class="fas fa-om"></i>
+            <h1>Goal: <output id="meditationGoal">20 Hours</output></h1>
+            <div class="button-group">
+                <button type="button" onclick="trackMeditation()">Track Meditation</button>
+            </div>
+            <div class="output-container">
+                <p>Current Hours: <output id="currentMeditation">0 Hours</output></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables to hold the current progress
+        let totalSteps = 0;
+        let totalCycling = 0;
+        let totalRunning = 0;
+        let totalSwimming = 0;
+        let totalYoga = 0;
+        let totalMeditation = 0;
+
+        // Default goals
+        const stepGoal = 15000;
+        const cyclingGoal = 100;
+        const runningGoal = 50;
+        const swimmingGoal = 30;
+        const yogaGoal = 30; // in hours
+        const meditationGoal = 20; // in hours
+
+        function trackSteps() {
+            totalSteps += 1000; // Simulating step tracking
+            updateProgress();
+        }
+
+        function trackCycling() {
+            totalCycling += 10; // Simulating cycling tracking
+            updateProgress();
+        }
+
+        function trackRunning() {
+            totalRunning += 5;
+            updateProgress();
+        }
+
+        function trackSwimming() {
+            totalSwimming += 2; // Simulating swimming tracking
+            updateProgress();
+        }
+
+        function trackYoga() {
+            totalYoga += 1; // Simulating yoga tracking (in hours)
+            updateProgress();
+        }
+
+        function trackMeditation() {
+            totalMeditation += 1; // Simulating meditation tracking (in hours)
+            updateProgress();
+        }
+
+        function updateProgress() {
+            document.getElementById('currentSteps').value = totalSteps;
+            document.getElementById('stepGoal').value = stepGoal;
+            document.getElementById('currentCycling').value = totalCycling + ' km';
+            document.getElementById('cyclingGoal').value = cyclingGoal;
+            document.getElementById('currentRunning').value = totalRunning + ' km';
+            document.getElementById('runningGoal').value = runningGoal;
+            document.getElementById('currentSwimming').value = totalSwimming + ' km';
+            document.getElementById('swimmingGoal').value = swimmingGoal;
+            document.getElementById('currentYoga').value = totalYoga + ' Hours';
+            document.getElementById('yogaGoal').value = yogaGoal;
+            document.getElementById('currentMeditation').value = totalMeditation + ' Hours';
+            document.getElementById('meditationGoal').value = meditationGoal;
+        }
+
+        // Initialize with default values
+        updateProgress();
+    </script>
+</body>
+</html>
